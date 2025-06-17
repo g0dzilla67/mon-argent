@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon Argent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>💰 Mon Argent</h1>
+    <p id="total">Total : 0€</p>
+  </header>
+
+  <main>
+    <section id="charts">
+      <canvas id="pieChart"></canvas>
+      <canvas id="historyChart"></canvas>
+    </section>
+
+    <section id="wallets"></section>
+
+    <button id="addWalletBtn">➕ Ajouter un endroit</button>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
