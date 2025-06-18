@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
   background-color: #121212;
-  color: white;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +32,12 @@ main {
   box-shadow: 0 2px 5px rgba(255,255,255,0.05);
 }
 
+.wallet-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
 .wallet input {
   width: 60px;
   background-color: #333;
@@ -43,37 +49,35 @@ main {
 }
 
 button {
-  margin-top: 1rem;
   background-color: #00c49a;
   border: none;
-  padding: 0.8rem 1.5rem;
+  padding: 0.7rem 1.2rem;
   border-radius: 8px;
   color: black;
   font-weight: bold;
   cursor: pointer;
-  display: block;
-  width: 100%;
 }
 
-#charts canvas {
-  margin-top: 2rem;
-  background-color: #1f1f1f;
-  border-radius: 12px;
-  padding: 1rem;
-}
-
-.wallet-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 5px;
+button:hover {
+  opacity: 0.9;
 }
 
 .delete-btn {
   background-color: #ff4d4f;
   color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
+#charts canvas {
+  width: 100% !important;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+#addWalletBtn {
+  display: block;
+  margin: 20px auto;
+  width: calc(100% - 40px);
+  background-color: #4caf50;
+  color: white;
+}
