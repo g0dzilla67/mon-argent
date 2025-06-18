@@ -61,3 +61,19 @@ button {
   border-radius: 12px;
   padding: 1rem;
 }
+
+.wallet-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.delete-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
