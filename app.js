@@ -62,10 +62,17 @@ function updateDisplay() {
     div.innerHTML = `
       <h3>${wallet.name} : ${wallet.amount.toFixed(2)}€</h3>
       <input type="number" id="amount${index}" placeholder="+/- montant">
-      <button onclick="editWallet(${index})">Valider</button>
+      <div class="wallet-actions">
+        <button onclick="editWallet(${index})">Valider</button>
+        <button onclick="deleteWallet(${index})" class="delete-btn">🗑️</button>
+      </div>
     `;
     container.appendChild(div);
   });
+
+  updateCharts();
+}
+
 
   updateCharts();
 }
@@ -97,3 +104,10 @@ document.getElementById("addWalletBtn").onclick = () => {
 };
 
 updateDisplay();
+function deleteWallet(index) {
+  if (confirm("Supprimer cet endroit ?")) {
+    wallets.splice(index, 1);
+    save();
+    updateDisplay();
+  }
+}
