@@ -1,53 +1,68 @@
-// Récupération stockage
+// Récupération des données locales
 let wallets = JSON.parse(localStorage.getItem("wallets")) || [];
 let history = JSON.parse(localStorage.getItem("history")) || [];
 
-// Canvas contexts
+// Références aux graphiques
 const pieCtx = document.getElementById("pieChart").getContext("2d");
 const histCtx = document.getElementById("historyChart").getContext("2d");
 
-// Chart instances
 let pieChart, historyChart;
 
-// Sauvegarde en local
+// Sauvegarde dans le localStorage
 function save() {
   localStorage.setItem("wallets", JSON.stringify(wallets));
   localStorage.setItem("history", JSON.stringify(history));
 }
 
-// Met à jour les deux graphiques
+// Met à jour les graphiques
 function updateCharts() {
   const labels = wallets.map(w => w.name);
   const data = wallets.map(w => w.amount);
 
-  // Pie chart
   if (pieChart) pieChart.destroy();
   pieChart = new Chart(pieCtx, {
     type: 'pie',
-    data: { labels, datasets: [{ data, backgroundColor: ['#00c49a','#3399ff','#ffcc00','#ff6699','#66ff66'] }] },
-    options: { plugins: { legend: { position: 'bottom' } } }
+    data: {
+      labels,
+      datasets: [{
+        data,
+        backgroundColor: ['#00c49a', '#3399ff', '#ffcc00', '#ff6699', '#66ff66'],
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { position: 'bottom' }
+      }
+    }
   });
 
-  // History line chart
   const histLabels = history.map(h => h.date);
   const histData = history.map(h => h.total);
+
   if (historyChart) historyChart.destroy();
   historyChart = new Chart(histCtx, {
     type: 'line',
-    data: { labels: histLabels, datasets: [{ label: 'Total', data: histData, borderColor: '#00c49a', tension: 0.3, fill: false }] }
+    data: {
+      labels: histLabels,
+      datasets: [{
+        label: 'Total',
+        data: histData,
+        borderColor: '#00c49a',
+        tension: 0.3,
+        fill: false,
+      }]
+    }
   });
 }
 
-// Affichage des wallets + boutons Valider / Supprimer
+// Affichage de tous les wallets
 function updateDisplay() {
   const container = document.getElementById("wallets");
   container.innerHTML = "";
 
-  // Mise à jour du total
   const total = wallets.reduce((sum, w) => sum + w.amount, 0);
   document.getElementById("total").textContent = `Total : ${total.toFixed(2)}€`;
 
-  // Création des cartes
   wallets.forEach((w, idx) => {
     const div = document.createElement("div");
     div.className = "wallet";
@@ -56,32 +71,37 @@ function updateDisplay() {
       <div class="wallet-actions">
         <input type="number" id="amount${idx}" placeholder="+/- montant">
         <button onclick="editWallet(${idx})">Valider</button>
+        <button onclick="renameWallet(${idx})">✏️</button>
         <button onclick="deleteWallet(${idx})" class="delete-btn">🗑️</button>
       </div>
     `;
     container.appendChild(div);
   });
 
-  // Re-dessine les graphiques
   updateCharts();
 }
 
-// Modification du montant
+// Modifier un montant
 function editWallet(index) {
   const input = document.getElementById("amount" + index);
   const val = parseFloat(input.value);
   if (isNaN(val)) return;
 
   wallets[index].amount += val;
+
   const newTotal = wallets.reduce((sum, w) => sum + w.amount, 0);
-  history.push({ date: new Date().toLocaleTimeString(), text: `${val>0?"+":""}${val}€ sur ${wallets[index].name}`, total: newTotal.toFixed(2) });
+  history.push({
+    date: new Date().toLocaleTimeString(),
+    text: `${val > 0 ? "+" : ""}${val}€ sur ${wallets[index].name}`,
+    total: newTotal.toFixed(2)
+  });
 
   save();
   updateDisplay();
   input.value = "";
 }
 
-// Suppression d’un wallet
+// Supprimer un wallet
 function deleteWallet(index) {
   if (confirm("Supprimer cet endroit ?")) {
     wallets.splice(index, 1);
@@ -90,7 +110,17 @@ function deleteWallet(index) {
   }
 }
 
-// Ajout d’un nouveau wallet
+// Renommer un wallet
+function renameWallet(index) {
+  const newName = prompt("Nouveau nom ?", wallets[index].name);
+  if (newName) {
+    wallets[index].name = newName;
+    save();
+    updateDisplay();
+  }
+}
+
+// Ajouter un wallet
 document.getElementById("addWalletBtn").addEventListener("click", () => {
   const name = prompt("Nom du nouvel endroit ?");
   if (!name) return;
@@ -103,15 +133,5 @@ document.getElementById("addWalletBtn").addEventListener("click", () => {
   updateDisplay();
 });
 
-function renameWallet(index) {
-  const newName = prompt("Nouveau nom ?", wallets[index].name);
-  if (newName) {
-    wallets[index].name = newName;
-    save();
-    updateDisplay();
-  }
-}
-
-
-// Init
+// Démarrage
 updateDisplay();
