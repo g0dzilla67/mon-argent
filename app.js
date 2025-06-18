@@ -103,5 +103,15 @@ document.getElementById("addWalletBtn").addEventListener("click", () => {
   updateDisplay();
 });
 
+function renameWallet(index) {
+  const newName = prompt("Nouveau nom ?", wallets[index].name);
+  if (newName) {
+    wallets[index].name = newName;
+    save();
+    updateDisplay();
+  }
+}
+
+
 // Init
 updateDisplay();
