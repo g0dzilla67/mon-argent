@@ -5,13 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mon Argent</title>
 
-  <!-- Feuille de style -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- Manifest PWA -->
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -23,17 +18,15 @@
   <main>
     <section id="charts">
       <canvas id="pieChart"></canvas>
-      <canvas id="historyChart" style="margin-top:20px;"></canvas>
+      <canvas id="historyChart" style="margin-top: 20px;"></canvas>
     </section>
 
     <section id="wallets"></section>
     <button id="addWalletBtn">➕ Ajouter un endroit</button>
   </main>
 
-  <!-- Script principal -->
   <script src="app.js"></script>
 
-  <!-- Service Worker PWA -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
