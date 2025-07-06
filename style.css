@@ -1,86 +1,110 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+/* RESET & MOBILE-FIRST */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
 }
-
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #121212;
+  color: #fff;
+  line-height: 1.4;
+}
 header {
-  background-color: #1e1e1e;
+  background: #1e1e1e;
   padding: 1rem;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
-
 main {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 1rem;
+  width: 100%;
+  max-width: 480px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+h1 { font-size: 1.5rem; }
+#total { margin-top: 0.5rem; font-weight: bold; }
+
+/* Graphiques */
+#charts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+#charts canvas {
+  width: 100% !important;
+  background: #1f1f1f;
+  border-radius: 8px;
+  padding: 0.5rem;
 }
 
-#wallets .wallet,
-#historyLog .hist-item {
-  background-color: #1f1f1f;
-  margin: 1rem 0;
+/* Wallets */
+#wallets .wallet {
+  background: #1f1f1f;
+  margin-bottom: 1rem;
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 8px;
 }
-
 .wallet-actions {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 }
-
-.wallet input {
-  width: 80px;
-  background-color: #333;
-  border: none;
-  color: white;
-  padding: 0.4rem;
+.wallet-actions input {
+  flex: 1 1 30%;
+  padding: 0.5rem;
   border-radius: 5px;
+  border: none;
+  background: #333;
+  color: #fff;
 }
-
 .wallet-actions button {
+  flex: 1 1 20%;
   padding: 0.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 0.9rem;
+}
+.wallet-actions .edit-btn { background: #00c49a; color: #000; }
+.wallet-actions .rename-btn { background: #ffd600; color: #000; }
+.wallet-actions .delete-btn { background: #ff4d4f; }
+
+/* Bouton ajouter */
+#addWalletBtn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 8px;
+  background: #4caf50;
+  color: #fff;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.9;
-}
-
-.delete-btn { background: #ff4d4f; color: white; }
-.rename-btn { background: #ffd600; color: black; }
-#addWalletBtn { background: #4caf50; color: white; width: 100%; padding: 0.7rem; border:none; border-radius:8px; margin-bottom:2rem; }
-
+/* Historique */
 #historyLog {
-  max-height: 300px;
+  max-height: 200px;
   overflow-y: auto;
-  padding-bottom: 1rem;
+  margin-bottom: 2rem;
 }
-
 .hist-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  background: #1f1f1f;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
 }
-
-.hist-info {
-  flex: 1;
+.hist-left {
+  font-size: 0.9rem;
 }
-
 .hist-note {
-  margin-left: 0.5rem;
+  font-size: 0.8rem;
   font-style: italic;
-  color: #bbb;
-}
-
-#charts canvas {
-  background-color: #1f1f1f;
-  border-radius: 12px;
-  padding: 1rem;
+  color: #ccc;
+  margin-left: 0.5rem;
 }
