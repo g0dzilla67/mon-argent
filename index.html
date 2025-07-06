@@ -3,46 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Argent V3</title>
+  <title>Mon Argent Sturdy V2</title>
 
-  <!-- Feuille de style -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Manifest PWA -->
+  <!-- PWA manifest -->
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <header>
-    <h1>💰 Mon Argent V3</h1>
+    <h1>💰 Mon Argent</h1>
     <p id="total">Total : 0€</p>
   </header>
 
   <main>
-    <!-- Graphiques -->
+    <!-- 1⃣ Graphiques -->
     <section id="charts">
       <canvas id="pieChart"></canvas>
       <canvas id="historyChart"></canvas>
     </section>
 
-    <!-- Liste des comptes -->
+    <!-- 2⃣ Wallets -->
     <section id="wallets"></section>
     <button id="addWalletBtn">➕ Ajouter un endroit</button>
 
-    <!-- Historique -->
+    <!-- 3⃣ Historique -->
     <h2>📋 Historique</h2>
     <section id="historyLog"></section>
   </main>
 
-  <!-- Code principal -->
   <script src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('SW enregistré'))
-        .catch(err => console.error('Erreur SW:', err));
+        .catch(console.error);
     }
   </script>
 </body>
