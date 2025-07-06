@@ -1,110 +1,108 @@
-/* RESET & MOBILE-FIRST */
-* {
-  margin: 0; padding: 0; box-sizing: border-box;
-}
+/* reset */
+* { margin:0; padding:0; box-sizing:border-box }
+
+/* Corps & centrage */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: sans-serif;
   background: #121212;
-  color: #fff;
-  line-height: 1.4;
+  color: #eee;
 }
 header {
   background: #1e1e1e;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  padding:1rem;
+  text-align:center;
 }
 main {
-  width: 100%;
-  max-width: 480px;
-  margin: 1rem auto;
-  padding: 0 1rem;
+  max-width:480px;
+  margin:1rem auto;
+  padding:0 1rem;
 }
-h1 { font-size: 1.5rem; }
-#total { margin-top: 0.5rem; font-weight: bold; }
 
-/* Graphiques */
+/* TOTAL */
+#total { margin-top:0.5rem; font-weight:bold; }
+
+/* GRAPHIQUES */
 #charts {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  margin-bottom:1rem;
 }
 #charts canvas {
-  width: 100% !important;
+  width:100% !important;
+  height:200px !important;       /* <- fixe un height visible */
   background: #1f1f1f;
-  border-radius: 8px;
-  padding: 0.5rem;
+  border-radius:8px;
 }
 
-/* Wallets */
+/* WALLETS */
 #wallets .wallet {
-  background: #1f1f1f;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 8px;
+  background:#1f1f1f;
+  padding:1rem;
+  border-radius:8px;
+  margin-bottom:1rem;
+}
+.wallet h3 {
+  font-size:1rem;
+  margin-bottom:0.5rem;
 }
 .wallet-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
 }
 .wallet-actions input {
-  flex: 1 1 30%;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: none;
-  background: #333;
-  color: #fff;
+  flex:1 1 40%;
+  padding:0.5rem;
+  border:none;
+  border-radius:5px;
+  background:#333;
+  color:#fff;
 }
 .wallet-actions button {
-  flex: 1 1 20%;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  color: #fff;
-  font-size: 0.9rem;
+  flex:1 1 20%;
+  padding:0.5rem;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:0.9rem;
 }
-.wallet-actions .edit-btn { background: #00c49a; color: #000; }
-.wallet-actions .rename-btn { background: #ffd600; color: #000; }
-.wallet-actions .delete-btn { background: #ff4d4f; }
+.edit-btn { background:#00c49a; color:#000 }
+.rename-btn { background:#ffd600; color:#000 }
+.delete-btn { background:#ff4d4f; }
 
-/* Bouton ajouter */
+/* BOUTON AJOUTER */
 #addWalletBtn {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  margin: 1rem 0;
-  border: none;
-  border-radius: 8px;
-  background: #4caf50;
-  color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
+  width:100%;
+  padding:0.75rem;
+  background:#4caf50;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:1rem;
+  margin-bottom:1rem;
+  cursor:pointer;
 }
 
-/* Historique */
+/* HISTORIQUE */
 #historyLog {
-  max-height: 200px;
-  overflow-y: auto;
-  margin-bottom: 2rem;
+  max-height:200px;
+  overflow-y:auto;
+  margin-bottom:2rem;
 }
 .hist-item {
-  display: flex;
-  justify-content: space-between;
-  background: #1f1f1f;
-  padding: 0.75rem;
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
+  background:#1f1f1f;
+  padding:0.75rem;
+  border-radius:6px;
+  margin-bottom:0.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-.hist-left {
-  font-size: 0.9rem;
-}
+.hist-left { font-size:0.9rem }
 .hist-note {
-  font-size: 0.8rem;
-  font-style: italic;
-  color: #ccc;
-  margin-left: 0.5rem;
+  font-size:0.8rem;
+  font-style:italic;
+  color:#aaa;
+  margin-left:0.5rem;
 }
