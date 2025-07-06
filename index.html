@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mon Argent</title>
-
   <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-
-  <!-- Chart.js UMD -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
   <header>
@@ -20,11 +17,10 @@
   <main>
     <section id="charts">
       <canvas id="pieChart"></canvas>
-      <canvas id="historyChart"></canvas>
+      <canvas id="historyChart" style="margin-top:20px;"></canvas>
     </section>
 
     <section id="wallets"></section>
-
     <button id="addWalletBtn">➕ Ajouter un endroit</button>
 
     <h2>📜 Historique</h2>
@@ -32,12 +28,11 @@
   </main>
 
   <script src="app.js"></script>
-
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker OK'))
-        .catch(err => console.error('Erreur SW:', err));
+        .then(() => console.log("SW enregistré"))
+        .catch(e => console.error("Erreur SW", e));
     }
   </script>
 </body>
