@@ -1,46 +1,46 @@
-// Récupération
+// Données depuis localStorage
 let wallets = JSON.parse(localStorage.getItem("wallets")) || [];
 let history = JSON.parse(localStorage.getItem("history")) || [];
 
-// Canvas
+// Contexte Chart.js
 const pieCtx = document.getElementById("pieChart").getContext("2d");
 const histCtx = document.getElementById("historyChart").getContext("2d");
 let pieChart, historyChart;
 
-// Sauvegarde
+// Sauvegarde en local
 function save() {
   localStorage.setItem("wallets", JSON.stringify(wallets));
   localStorage.setItem("history", JSON.stringify(history));
 }
 
-// Graphiques
+// Met à jour les graphiques
 function updateCharts() {
   const labels = wallets.map(w => w.name);
   const data = wallets.map(w => w.amount);
 
   if (pieChart) pieChart.destroy();
   pieChart = new Chart(pieCtx, {
-    type:'pie',
-    data:{ labels, datasets:[{ data, backgroundColor:['#00c49a','#3399ff','#ffcc00','#ff6699','#66ff66'] }] },
-    options:{ plugins:{ legend:{ position:'bottom' } } }
+    type: 'pie',
+    data: { labels, datasets: [{ data, backgroundColor: ['#00c49a','#3399ff','#ffcc00','#ff6699','#66ff66'] }] },
+    options: { plugins: { legend: { position: 'bottom' } } }
   });
 
-  const histLabels = history.map(h=>h.date);
-  const histData = history.map(h=>h.total);
+  const histLabels = history.map(h => h.date);
+  const histData = history.map(h => h.total);
   if (historyChart) historyChart.destroy();
   historyChart = new Chart(histCtx, {
-    type:'line',
-    data:{ labels:histLabels, datasets:[{ label:'Total', data:histData, borderColor:'#00c49a', tension:0.3, fill:false }] }
+    type: 'line',
+    data: { labels: histLabels, datasets: [{ label: 'Total', data: histData, borderColor: '#00c49a', tension: 0.3, fill: false }] }
   });
 }
 
-// Affichage global
+// Affiche wallets et historique
 function updateDisplay() {
-  // total & graphique
-  const total = wallets.reduce((s,w)=>s+w.amount,0);
+  // Total
+  const total = wallets.reduce((s, w) => s + w.amount, 0);
   document.getElementById("total").textContent = `Total : ${total.toFixed(2)}€`;
 
-  // wallets
+  // Wallets
   const wCont = document.getElementById("wallets");
   wCont.innerHTML = "";
   wallets.forEach((w, i) => {
@@ -53,14 +53,10 @@ function updateDisplay() {
           type="text" 
           id="amount${i}" 
           placeholder="+/- montant" 
-          inputmode="decimal" 
+          inputmode="decimal"
           pattern="^-?[0-9]*\\.?[0-9]+$"
         />
-        <input 
-          type="text" 
-          id="note${i}" 
-          placeholder="Note (ex : repas)" 
-        />
+        <input type="text" id="note${i}" placeholder="Note (ex : repas)" />
         <button class="edit-btn" onclick="editWallet(${i})">Valider</button>
         <button class="rename-btn" onclick="renameWallet(${i})">✏️</button>
         <button class="delete-btn" onclick="deleteWallet(${i})">🗑️</button>
@@ -69,12 +65,11 @@ function updateDisplay() {
     wCont.appendChild(div);
   });
 
-  // historique & graphique
   renderHistory();
   updateCharts();
 }
 
-// historique
+// Affiche historique
 function renderHistory() {
   const hCont = document.getElementById("historyLog");
   hCont.innerHTML = "";
@@ -91,17 +86,17 @@ function renderHistory() {
   });
 }
 
-// actions
+// Actions
 function editWallet(i) {
-  const amtRaw = document.getElementById("amount"+i).value.trim();
-  const amt = parseFloat(amtRaw);
-  if (isNaN(amt)) return alert("Montant invalide");
+  const raw = document.getElementById("amount"+i).value.trim();
+  const amt = parseFloat(raw);
+  if (isNaN(amt)) return alert("Montant invalide !");
   const note = document.getElementById("note"+i).value.trim();
-
+  
   wallets[i].amount += amt;
   const total = wallets.reduce((s,w)=>s+w.amount,0);
-  history.push({ date:new Date().toLocaleTimeString(), wallet:wallets[i].name, delta:amt, note, total });
-
+  history.push({ date: new Date().toLocaleTimeString(), wallet: wallets[i].name, delta: amt, note, total });
+  
   save(); updateDisplay();
 }
 
@@ -120,20 +115,20 @@ function renameWallet(i) {
   }
 }
 
-// ajouter
-document.getElementById("addWalletBtn").addEventListener("click",()=>{
+// Bouton Ajouter
+document.getElementById("addWalletBtn").addEventListener("click", () => {
   const name = prompt("Nom de l'endroit ?");
   if (!name) return;
   const raw = prompt("Montant initial (+/-) ?");
   const amt = parseFloat(raw);
-  if (isNaN(amt)) return alert("Montant invalide");
+  if (isNaN(amt)) return alert("Montant invalide !");
 
-  wallets.push({ name, amount:amt });
+  wallets.push({ name, amount: amt });
   const total = wallets.reduce((s,w)=>s+w.amount,0);
-  history.push({ date:new Date().toLocaleTimeString(), wallet:name, delta:amt, note:'Initial', total });
+  history.push({ date: new Date().toLocaleTimeString(), wallet: name, delta: amt, note: 'Initial', total });
 
   save(); updateDisplay();
 });
 
-// init
+// Init
 updateDisplay();
