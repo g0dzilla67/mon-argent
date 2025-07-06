@@ -1,16 +1,13 @@
-/* reset */
+/* Reset & mobile-first */
 * { margin:0; padding:0; box-sizing:border-box }
-
-/* Corps & centrage */
 body {
   font-family: sans-serif;
-  background: #121212;
-  color: #eee;
+  background:#121212;
+  color:#EEE;
 }
 header {
-  background: #1e1e1e;
-  padding:1rem;
-  text-align:center;
+  background:#1e1e1e;
+  padding:1rem; text-align:center;
 }
 main {
   max-width:480px;
@@ -18,10 +15,13 @@ main {
   padding:0 1rem;
 }
 
-/* TOTAL */
-#total { margin-top:0.5rem; font-weight:bold; }
+/* Total */
+#total {
+  margin-top:0.5rem;
+  font-weight:bold;
+}
 
-/* GRAPHIQUES */
+/* Graphiques */
 #charts {
   display:flex;
   flex-direction:column;
@@ -30,26 +30,23 @@ main {
 }
 #charts canvas {
   width:100% !important;
-  height:200px !important;       /* <- fixe un height visible */
-  background: #1f1f1f;
+  height:200px !important;
+  background:#1f1f1f;
   border-radius:8px;
 }
 
-/* WALLETS */
+/* Wallets */
 #wallets .wallet {
   background:#1f1f1f;
   padding:1rem;
   border-radius:8px;
   margin-bottom:1rem;
 }
-.wallet h3 {
-  font-size:1rem;
-  margin-bottom:0.5rem;
-}
 .wallet-actions {
   display:flex;
   flex-wrap:wrap;
   gap:0.5rem;
+  margin-top:0.75rem;
 }
 .wallet-actions input {
   flex:1 1 40%;
@@ -66,12 +63,13 @@ main {
   border-radius:5px;
   cursor:pointer;
   font-size:0.9rem;
+  color:#000;
 }
-.edit-btn { background:#00c49a; color:#000 }
-.rename-btn { background:#ffd600; color:#000 }
+.edit-btn { background:#00c49a; }
+.rename-btn { background:#ffd600; }
 .delete-btn { background:#ff4d4f; }
 
-/* BOUTON AJOUTER */
+/* Ajouter */
 #addWalletBtn {
   width:100%;
   padding:0.75rem;
@@ -84,22 +82,21 @@ main {
   cursor:pointer;
 }
 
-/* HISTORIQUE */
+/* Historique */
 #historyLog {
   max-height:200px;
   overflow-y:auto;
   margin-bottom:2rem;
 }
 .hist-item {
+  display:flex;
+  justify-content:space-between;
   background:#1f1f1f;
   padding:0.75rem;
   border-radius:6px;
   margin-bottom:0.5rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
 }
-.hist-left { font-size:0.9rem }
+.hist-left { font-size:0.9rem; }
 .hist-note {
   font-size:0.8rem;
   font-style:italic;
