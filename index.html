@@ -1,19 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mon Argent</title>
 
-  <!-- Feuille de style -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
 
-  <!-- Chart.js (UMD build) -->
+  <!-- Chart.js UMD -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
-  <!-- PWA manifest -->
-  <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <header>
@@ -22,30 +18,26 @@
   </header>
 
   <main>
-    <!-- Graphiques -->
     <section id="charts">
       <canvas id="pieChart"></canvas>
       <canvas id="historyChart"></canvas>
     </section>
 
-    <!-- Liste des endroits -->
     <section id="wallets"></section>
+
     <button id="addWalletBtn">➕ Ajouter un endroit</button>
 
-    <!-- Historique -->
-    <h2>📋 Historique</h2>
-    <section id="historyLog"></section>
+    <h2>📜 Historique</h2>
+    <div id="historyLog"></div>
   </main>
 
   <script src="app.js"></script>
+
   <script>
-    // Désinscrire ancien Service Worker pour forcer reload
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(regs => {
-        regs.forEach(r => r.unregister());
-      }).finally(() => {
-        navigator.serviceWorker.register('service-worker.js').catch(console.error);
-      });
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker OK'))
+        .catch(err => console.error('Erreur SW:', err));
     }
   </script>
 </body>
