@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Argent Sturdy V2</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Mon Argent</title>
 
-  <!-- CSS -->
+  <!-- Feuille de style -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Chart.js (UMD build) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
   <!-- PWA manifest -->
   <link rel="manifest" href="manifest.json">
@@ -21,26 +22,30 @@
   </header>
 
   <main>
-    <!-- 1⃣ Graphiques -->
+    <!-- Graphiques -->
     <section id="charts">
       <canvas id="pieChart"></canvas>
       <canvas id="historyChart"></canvas>
     </section>
 
-    <!-- 2⃣ Wallets -->
+    <!-- Liste des endroits -->
     <section id="wallets"></section>
     <button id="addWalletBtn">➕ Ajouter un endroit</button>
 
-    <!-- 3⃣ Historique -->
+    <!-- Historique -->
     <h2>📋 Historique</h2>
     <section id="historyLog"></section>
   </main>
 
   <script src="app.js"></script>
   <script>
+    // Désinscrire ancien Service Worker pour forcer reload
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .catch(console.error);
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(r => r.unregister());
+      }).finally(() => {
+        navigator.serviceWorker.register('service-worker.js').catch(console.error);
+      });
     }
   </script>
 </body>
