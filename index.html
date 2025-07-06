@@ -3,33 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Argent V2</title>
+  <title>Mon Argent V3</title>
 
+  <!-- Feuille de style -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Manifest PWA -->
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <header>
-    <h1>💰 Mon Argent V2</h1>
+    <h1>💰 Mon Argent V3</h1>
     <p id="total">Total : 0€</p>
   </header>
 
   <main>
+    <!-- Graphiques -->
     <section id="charts">
       <canvas id="pieChart"></canvas>
-      <canvas id="historyChart" style="margin-top: 20px;"></canvas>
+      <canvas id="historyChart"></canvas>
     </section>
 
+    <!-- Liste des comptes -->
     <section id="wallets"></section>
     <button id="addWalletBtn">➕ Ajouter un endroit</button>
 
+    <!-- Historique -->
     <h2>📋 Historique</h2>
     <section id="historyLog"></section>
   </main>
 
+  <!-- Code principal -->
   <script src="app.js"></script>
-
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
