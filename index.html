@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Argent</title>
+  <title>Mon Argent V2</title>
 
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -11,7 +11,7 @@
 </head>
 <body>
   <header>
-    <h1>💰 Mon Argent</h1>
+    <h1>💰 Mon Argent V2</h1>
     <p id="total">Total : 0€</p>
   </header>
 
@@ -23,6 +23,9 @@
 
     <section id="wallets"></section>
     <button id="addWalletBtn">➕ Ajouter un endroit</button>
+
+    <h2>📋 Historique</h2>
+    <section id="historyLog"></section>
   </main>
 
   <script src="app.js"></script>
@@ -30,7 +33,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker enregistré'))
+        .then(() => console.log('SW enregistré'))
         .catch(err => console.error('Erreur SW:', err));
     }
   </script>
